@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/teamchitra_b19_new?zeroDateTimeBehavior=convertToNull</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
+        <!--<property name="hibernate.hbm2ddl.auto">update</property>-->
+        <property name="hibernate.show_sql">false</property>
+        
+        <!-- Connection Pooling -->
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+        <property name="hibernate.c3p0.acquire_increment">5</property>
+        <property name="hibernate.c3p0.min_size">1</property>
+        <property name="hibernate.c3p0.max_size">500</property>
+        <property name="hibernate.c3p0.timeout">120</property>
+        <property name="hibernate.c3p0.idle_test_period">100</property>
+        <property name="hibernate.c3p0.max_statements">10</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.jdbc.batch_size">30</property>
+        
+        <!-- Tables Mapping -->
+        <mapping class="com.tcs.ignite.tcsmail.beans.CmnUserDetails"/>
+        <mapping class="com.tcs.ignite.tcsmail.beans.EmailCustomerDetails"/>
+        <mapping class="com.tcs.ignite.tcsmail.beans.EmailCustomerMappingDetails"/>
+        <mapping class="com.tcs.ignite.tcsmail.beans.EmailUserCustomerTransactionDetails"/>
+        <mapping class="com.tcs.ignite.tcsmail.beans.MasterRole"/>
+        
+    </session-factory>
+</hibernate-configuration>
