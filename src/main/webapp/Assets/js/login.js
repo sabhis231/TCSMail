@@ -18,6 +18,7 @@ var SVGLoader = '<svg version="1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink
                         console.log(data);
                                 if (data.responseCode === 1 && data.doauth === true) {
                         $.notify("Redirecting", "success");
+//                        console.log("hi");
                                window.location.href = contextPath + "/views/" + data.role + "/";
                         } else {
                         $.notify("Invalid Credentials", "error");
