@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Kepler</title>
+        <title>TCSMail</title>
         <%@include file="include.jsp" %>
     </head>
     <body draggable="false"
