@@ -8,7 +8,9 @@ package com.tcs.ignite.tcsmail.services;
 import com.tcs.ignite.tcsmail.beans.CmnUserDetails;
 import com.tcs.ignite.tcsmail.beans.EmailCustomerDetails;
 import com.tcs.ignite.tcsmail.beans.EmailCustomerMappingDetails;
+import com.tcs.ignite.tcsmail.beans.EmailStatusDetails;
 import com.tcs.ignite.tcsmail.beans.EmailUserCustomerTransactionDetails;
+import com.tcs.ignite.tcsmail.beans.MasterEmailStatus;
 import com.tcs.ignite.tcsmail.beans.MasterRole;
 //import com.tcs.ignite.tcsmail.utils.Connection;
 import com.tcs.ignite.tcsmail.utils.HibernateUtil;
@@ -27,6 +29,7 @@ public class DbUtils {
 
     public static List findByHQLQuery(Session session, final String queryString, final Object... values) {
 //        String hqlQuery = PropertyFile.fetchPropertyDirectly(SQL_PROPERTY_FILE, queryString);
+        System.out.println("***************" + queryString);
         List list = null;
         try {
             Query query = session.createQuery(queryString);
@@ -99,8 +102,19 @@ public class DbUtils {
         try {
             String str = "select  c from EmailUserCustomerTransactionDetails c where c.emailCustomerId=?  order by c.transactionId desc";
             List<EmailUserCustomerTransactionDetails> listEmailUserCustomerTransactionDetails = findByHQLQuery(session, str, getParametersObjectArray(new EmailCustomerDetails(mappedCustomerId)));
+            str = "select  c from MasterEmailStatus c where c.isDeleted=0 and c.isVisible=1  order by c.statusName";
+            List<MasterEmailStatus> listMasterEmailStatus = findByHQLQuery(session, str);
+
             for (EmailUserCustomerTransactionDetails euctd : listEmailUserCustomerTransactionDetails) {
                 JSONObject jsono = new JSONObject();
+                str = "select  c from EmailStatusDetails c where c.emailTransactionId=?";
+                List<EmailStatusDetails> listEmailStatusDetails = findByHQLQuery(session, str, getParametersObjectArray(euctd));
+                if (listEmailStatusDetails.size() > 0) {
+                    jsono.put("tcsEmailStatus", listEmailStatusDetails.get(0).getStatusId().getStatusName());
+
+                } else {
+                    jsono.put("tcsEmailStatus", "Not Avaliable");
+                }
                 jsono.put("tcsEmailCustomerName", euctd.getEmailCustomerId().getCustomerName().trim());
                 jsono.put("tcsEmailCustomerId", euctd.getEmailCustomerId().getEmailCustomerId());
                 jsono.put("tcsEmailBcc", euctd.getTrCc().replaceAll("\\<\\<del\\>\\>", ",").replaceAll("\\ú", "").trim());
@@ -115,6 +129,15 @@ public class DbUtils {
                 array.add(jsono);
             }
             object.put("tcsEmailMappedCustomerData", array);
+            array = new JSONArray();
+            for (MasterEmailStatus mes : listMasterEmailStatus) {
+                JSONObject jsono = new JSONObject();
+                jsono.put("statusId", mes.getEmailStatusId());
+                jsono.put("statusName", mes.getStatusName());
+                array.add(jsono);
+            }
+            object.put("tcsEmailMasterEmailStatus", array);
+
             object.put("responseCode", 1);
 
         } catch (Exception ex) {
@@ -130,19 +153,31 @@ public class DbUtils {
 
     }
 
-    public static JSONObject saveMailActivity(EmailUserCustomerTransactionDetails euctd1) {
+    public static JSONObject saveMailActivity(EmailUserCustomerTransactionDetails euctd1, EmailStatusDetails esd) {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         JSONObject object = new JSONObject();
         JSONArray array = new JSONArray();
         try {
             session.beginTransaction();
-            session.save(euctd1);
+            Integer transactionId = (Integer) session.save(euctd1);
+            esd.setEmailTransactionId(new EmailUserCustomerTransactionDetails(transactionId));
+            session.save(esd);
             session.getTransaction().commit();
+            session.close();
+            session = HibernateUtil.getSessionFactory().openSession();
             String str = "select  c from EmailUserCustomerTransactionDetails c where c.emailCustomerId=?  order by c.transactionId desc";
             List<EmailUserCustomerTransactionDetails> listEmailUserCustomerTransactionDetails = findByHQLQuery(session, str, getParametersObjectArray(euctd1.getEmailCustomerId()));
             for (EmailUserCustomerTransactionDetails euctd : listEmailUserCustomerTransactionDetails) {
                 JSONObject jsono = new JSONObject();
+                str = "select  c from EmailStatusDetails c where c.emailTransactionId=?";
+                List<EmailStatusDetails> listEmailStatusDetails = findByHQLQuery(session, str, getParametersObjectArray(euctd));
+                if (listEmailStatusDetails.size() > 0) {
+                    jsono.put("tcsEmailStatus", listEmailStatusDetails.get(0).getStatusId().getStatusName());
+
+                } else {
+                    jsono.put("tcsEmailStatus", "Not Avaliable");
+                }
                 jsono.put("tcsEmailCustomerName", euctd.getEmailCustomerId().getCustomerName());
                 jsono.put("tcsEmailCustomerId", euctd.getEmailCustomerId().getEmailCustomerId());
                 jsono.put("tcsEmailBcc", euctd.getTrCc().replaceAll("\\<\\<del\\>\\>", ",").replaceAll("\\ú", ""));
@@ -184,7 +219,7 @@ public class DbUtils {
                 jsono.put("tcsEmailUserName", cud.getUserName());
                 jsono.put("tcsEmailUserId", cud.getUserId());
                 jsono.put("tcsEmailPrimaryEmail", cud.getPrimaryEmail());
-                
+
                 array.add(jsono);
             }
             object.put("tcsEmailMappedUserData", array);

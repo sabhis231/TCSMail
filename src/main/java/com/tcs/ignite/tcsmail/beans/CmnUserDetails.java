@@ -37,18 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "cmn_user_details")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CmnUserDetails.findAll", query = "SELECT c FROM CmnUserDetails c")
-    , @NamedQuery(name = "CmnUserDetails.findByUserId", query = "SELECT c FROM CmnUserDetails c WHERE c.userId = :userId")
-    , @NamedQuery(name = "CmnUserDetails.findByCreated", query = "SELECT c FROM CmnUserDetails c WHERE c.created = :created")
-    , @NamedQuery(name = "CmnUserDetails.findByUserName", query = "SELECT c FROM CmnUserDetails c WHERE c.userName = :userName")
-    , @NamedQuery(name = "CmnUserDetails.findByPassword", query = "SELECT c FROM CmnUserDetails c WHERE c.password = :password")
-    , @NamedQuery(name = "CmnUserDetails.findByLastModified", query = "SELECT c FROM CmnUserDetails c WHERE c.lastModified = :lastModified")
-    , @NamedQuery(name = "CmnUserDetails.findByDateOfBirth", query = "SELECT c FROM CmnUserDetails c WHERE c.dateOfBirth = :dateOfBirth")
-    , @NamedQuery(name = "CmnUserDetails.findByIsDeleted", query = "SELECT c FROM CmnUserDetails c WHERE c.isDeleted = :isDeleted")
-    , @NamedQuery(name = "CmnUserDetails.findByIsVisible", query = "SELECT c FROM CmnUserDetails c WHERE c.isVisible = :isVisible")
-    , @NamedQuery(name = "CmnUserDetails.findByKeyword", query = "SELECT c FROM CmnUserDetails c WHERE c.keyword = :keyword")
-    , @NamedQuery(name = "CmnUserDetails.findByGender", query = "SELECT c FROM CmnUserDetails c WHERE c.gender = :gender")
-    , @NamedQuery(name = "CmnUserDetails.findByPrimaryEmail", query = "SELECT c FROM CmnUserDetails c WHERE c.primaryEmail = :primaryEmail")})
+    @NamedQuery(name = "CmnUserDetails.findAll", query = "SELECT c FROM CmnUserDetails c")})
 public class CmnUserDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;

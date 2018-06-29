@@ -30,11 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "email_customer_mapping_details")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "EmailCustomerMappingDetails.findAll", query = "SELECT e FROM EmailCustomerMappingDetails e")
-    , @NamedQuery(name = "EmailCustomerMappingDetails.findByEmailCustomerMappingId", query = "SELECT e FROM EmailCustomerMappingDetails e WHERE e.emailCustomerMappingId = :emailCustomerMappingId")
-    , @NamedQuery(name = "EmailCustomerMappingDetails.findByCreated", query = "SELECT e FROM EmailCustomerMappingDetails e WHERE e.created = :created")
-    , @NamedQuery(name = "EmailCustomerMappingDetails.findByIsDeleted", query = "SELECT e FROM EmailCustomerMappingDetails e WHERE e.isDeleted = :isDeleted")
-    , @NamedQuery(name = "EmailCustomerMappingDetails.findByIsVisible", query = "SELECT e FROM EmailCustomerMappingDetails e WHERE e.isVisible = :isVisible")})
+    @NamedQuery(name = "EmailCustomerMappingDetails.findAll", query = "SELECT e FROM EmailCustomerMappingDetails e")})
 public class EmailCustomerMappingDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;

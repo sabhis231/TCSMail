@@ -34,11 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "email_customer_details")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "EmailCustomerDetails.findAll", query = "SELECT e FROM EmailCustomerDetails e")
-    , @NamedQuery(name = "EmailCustomerDetails.findByEmailCustomerId", query = "SELECT e FROM EmailCustomerDetails e WHERE e.emailCustomerId = :emailCustomerId")
-    , @NamedQuery(name = "EmailCustomerDetails.findByCreated", query = "SELECT e FROM EmailCustomerDetails e WHERE e.created = :created")
-    , @NamedQuery(name = "EmailCustomerDetails.findByIsDeleted", query = "SELECT e FROM EmailCustomerDetails e WHERE e.isDeleted = :isDeleted")
-    , @NamedQuery(name = "EmailCustomerDetails.findByIsVisible", query = "SELECT e FROM EmailCustomerDetails e WHERE e.isVisible = :isVisible")})
+    @NamedQuery(name = "EmailCustomerDetails.findAll", query = "SELECT e FROM EmailCustomerDetails e")})
 public class EmailCustomerDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;

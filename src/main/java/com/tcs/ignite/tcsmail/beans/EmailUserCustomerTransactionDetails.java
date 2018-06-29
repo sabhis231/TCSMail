@@ -6,6 +6,7 @@
 package com.tcs.ignite.tcsmail.beans;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,9 +18,11 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -29,10 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "email_user_customer_transaction_details")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "EmailUserCustomerTransactionDetails.findAll", query = "SELECT e FROM EmailUserCustomerTransactionDetails e")
-    , @NamedQuery(name = "EmailUserCustomerTransactionDetails.findByTransactionId", query = "SELECT e FROM EmailUserCustomerTransactionDetails e WHERE e.transactionId = :transactionId")
-    , @NamedQuery(name = "EmailUserCustomerTransactionDetails.findByIsDeleted", query = "SELECT e FROM EmailUserCustomerTransactionDetails e WHERE e.isDeleted = :isDeleted")
-    , @NamedQuery(name = "EmailUserCustomerTransactionDetails.findByIsVisible", query = "SELECT e FROM EmailUserCustomerTransactionDetails e WHERE e.isVisible = :isVisible")})
+    @NamedQuery(name = "EmailUserCustomerTransactionDetails.findAll", query = "SELECT e FROM EmailUserCustomerTransactionDetails e")})
 public class EmailUserCustomerTransactionDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -79,6 +79,8 @@ public class EmailUserCustomerTransactionDetails implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @ManyToOne(optional = false)
     private CmnUserDetails userId;
+    @OneToMany(mappedBy = "emailTransactionId")
+    private Collection<EmailStatusDetails> emailStatusDetailsCollection;
 
     public EmailUserCustomerTransactionDetails() {
     }
@@ -181,6 +183,15 @@ public class EmailUserCustomerTransactionDetails implements Serializable {
 
     public void setUserId(CmnUserDetails userId) {
         this.userId = userId;
+    }
+
+    @XmlTransient
+    public Collection<EmailStatusDetails> getEmailStatusDetailsCollection() {
+        return emailStatusDetailsCollection;
+    }
+
+    public void setEmailStatusDetailsCollection(Collection<EmailStatusDetails> emailStatusDetailsCollection) {
+        this.emailStatusDetailsCollection = emailStatusDetailsCollection;
     }
 
     @Override

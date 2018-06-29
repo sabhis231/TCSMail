@@ -37,12 +37,10 @@ public class SessionFilter implements Filter {
         String url = request.getRequestURL().toString();
         String[] Roles = {"admin", "user", "ta"};
         String Role = String.valueOf(httpsession.getAttribute("Role"));
-        System.out.println(Role);
         boolean authreq = false;
 
         if (Role != null) {
             for (int i = 0; i < Roles.length; i++) {
-                System.out.println(url);
                 if (url.contains("/views/" + Roles[i]) && Role.equals(Roles[i])) {
                     authreq = true;
                     break;
@@ -54,9 +52,7 @@ public class SessionFilter implements Filter {
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
         response.setHeader("Pragma", "no-cache"); // HTTP 1.0
         response.setDateHeader("Expires", 0); // Proxies
-        System.out.println(authreq);
         if (!authreq) {
-            System.out.println(request.getContextPath());
             response.sendRedirect(request.getContextPath());
 
             return;

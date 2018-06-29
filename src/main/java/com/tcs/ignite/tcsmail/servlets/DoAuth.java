@@ -59,7 +59,6 @@ public class DoAuth extends HttpServlet {
             cmnuserdetails.setPrimaryEmail(UserName);
             cmnuserdetails.setPassword(Password);
             cmnuserdetails = DbUtils.doauth(cmnuserdetails);
-            System.out.println(cmnuserdetails);
             if (cmnuserdetails != null) {
                 jsonobject.put("responseCode", 1);
                 jsonobject.put("doauth", true);

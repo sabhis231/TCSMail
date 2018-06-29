@@ -87,10 +87,19 @@
                         <input id="subject" name="subject" type="text" placeholder="Subject " class="form-control input-md" required="required" >
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="textinput">Date :</label>  
                     <div class="col-md-8">
                         <input id="date" name="date" type="date" placeholder="date " class="form-control input-md" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="textinput">Status :</label>  
+                    <div class="col-md-8">
+                        <select id="status" name="status" class="form-control">
+                            <option value="0" disabled selected>Select Status</option>
+                        </select>
                     </div>
                 </div>
 
@@ -129,20 +138,24 @@
 <script id="tmpl-addProject" type="x-tmpl-mustache">
 
     <div class='col l3 card main-card pageMargin' data-toggle="tooltip" data-id={{tcsEmailCustomerId}}>
-    <div class='card-content projectCardContent' >
+<div class='card-content projectCardContent' >
     <div class="col-sm-1">
-    <img src="../../Assets/image/default-profile.png" alt="" class="img-responsive img-thumbnail defaultImg"/>
+        <img src="../../Assets/image/default-profile.png" alt="" class="img-responsive img-thumbnail defaultImg"/>
     </div>
     <div class="col-sm-11 defaultName">
 
+        <div><pre>From : {{tcsEmailFrom}}<br>To: {{tcsEmailTo}}<br>Cc: {{tcsEmailBcc}}<br>Sent: {{tcsEmailCreated}}<br>Subject: {{tcsEmailSubject}}</pre></div>
+        <div><pre>{{tcsEmailContent}}</pre></div>
+    </div>
+</div>
+<div class="card-action">
+<pre>Status : {{tcsEmailStatus}}</pre>
 
+</div>
+</div>
+</script>
+<script id="tmpl-addMasterStatus" type="x-tmpl-mustache">
 
-    <div><pre>From : {{tcsEmailFrom}}<br>To: {{tcsEmailTo}}<br>Cc: {{tcsEmailBcc}}<br>Sent: {{tcsEmailCreated}}<br>Subject: {{tcsEmailSubject}}</pre></div>
-    <div><pre>{{tcsEmailContent}}</pre></div>
-    </div>
-    </div>
-    <div class="card-action">
-    </div>
-    </div>
+<option value={{statusId}}>{{statusName}}</option>
 </script>
 

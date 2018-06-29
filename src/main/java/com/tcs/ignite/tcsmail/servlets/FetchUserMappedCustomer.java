@@ -27,8 +27,6 @@ public class FetchUserMappedCustomer extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession httpsession = request.getSession(true);
         int userId = Integer.parseInt(httpsession.getAttribute("UserId").toString());
-//        String mappedUserId = httpsession.getAttribute("MappedUserId").toString();
-        System.out.println();
         if (httpsession.getAttribute("MappedUserId") != null) {
             userId = Integer.parseInt(httpsession.getAttribute("MappedUserId").toString());
         }

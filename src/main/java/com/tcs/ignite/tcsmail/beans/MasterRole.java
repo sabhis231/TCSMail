@@ -31,10 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "master_role")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "MasterRole.findAll", query = "SELECT m FROM MasterRole m")
-    , @NamedQuery(name = "MasterRole.findByRoleId", query = "SELECT m FROM MasterRole m WHERE m.roleId = :roleId")
-    , @NamedQuery(name = "MasterRole.findByIsDeleted", query = "SELECT m FROM MasterRole m WHERE m.isDeleted = :isDeleted")
-    , @NamedQuery(name = "MasterRole.findByRole", query = "SELECT m FROM MasterRole m WHERE m.role = :role")})
+    @NamedQuery(name = "MasterRole.findAll", query = "SELECT m FROM MasterRole m")})
 public class MasterRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
