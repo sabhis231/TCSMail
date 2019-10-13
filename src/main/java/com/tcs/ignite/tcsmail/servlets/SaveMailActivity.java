@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author bastianjoe
+ * @author sabhis231
  */
 public class SaveMailActivity extends HttpServlet {
 

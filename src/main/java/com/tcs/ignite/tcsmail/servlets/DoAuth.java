@@ -19,7 +19,7 @@ import org.json.simple.JSONObject;
 
 /**
  *
- * @author bastianjoe
+ * @author sabhis231
  */
 public class DoAuth extends HttpServlet {
 

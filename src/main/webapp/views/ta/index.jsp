@@ -1,11 +1,7 @@
-<%-- 
-    Document   : index
-    Created on : Jun 11, 2018, 5:42:30 PM
-    Author     : bastianjoe
---%>
+<%-- Document : index Created on : Jun 11, 2018, 5:42:30 PM Author : bastianjoe --%>
 <%@include file="../inc/header.jsp" %>
-
 <style>
+
     .card {
         position: relative;
         display: -webkit-box;
@@ -20,7 +16,7 @@
         background-color: #fff;
         border: 1px solid rgba(0, 0, 0, 0.125);
         border-radius: 0.25rem;
-        padding: 10px;
+        padding: 10px
     }
     @media (min-width: 576px) {
         .card-columns {
@@ -29,33 +25,24 @@
             column-count: 3;
             -webkit-column-gap: 1.25rem;
             -moz-column-gap: 1.25rem;
-            column-gap: 1.25rem;
+            column-gap: 1.25rem
         }
         .card-columns .card {
             display: inline-block;
             width: 100%;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.75rem
         }
     }
     .defaultImg {
-        height: 67px;
+        height: 67px
     }
     .defaultName {
-        padding: 17px;
-    }
+        padding: 17px
+    }                    
 </style>
 <div class="container">
-    <div class="card-columns">
-        <!--    <div class="card">
-                <img alt="Card image cap" class="card-img-top img-fluid" src="https://www.fillmurray.com/420/200">
-                <div class="card-block">
-                    <h4 class="card-title">Boating is the new canoeing</h4>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-            </div>-->
-    </div>
-</div>  
-
+    <div class="card-columns"></div>
+</div>
 <script src="../../Assets/js/user-index.js" type="text/javascript"></script>
 <script id="tmpl-addProject" type="x-tmpl-mustache">
 

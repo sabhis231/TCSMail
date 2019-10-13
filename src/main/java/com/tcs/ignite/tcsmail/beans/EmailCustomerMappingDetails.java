@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author bastianjoe
+ * @author sabhis231
  */
 @Entity
 @Table(name = "email_customer_mapping_details")

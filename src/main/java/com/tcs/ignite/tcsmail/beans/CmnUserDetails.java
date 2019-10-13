@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author bastianjoe
+ * @author sabhis231
  */
 @Entity
 @Table(name = "cmn_user_details")
