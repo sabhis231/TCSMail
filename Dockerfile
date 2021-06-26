@@ -20,10 +20,11 @@
 # Copy to images tomcat path
 #COPY ./target/TcsMail_v2-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 
+FROM andreptb/tomcat
 
-FROM openjdk:8
-ADD /home/app/target/TcsMail_v2-1.0-SNAPSHOT.jar TcsMail_v2-1.0-SNAPSHOT.jar
-ENTRYPOINT ["java", "-jar","TcsMail_v2-1.0-SNAPSHOT.jar"]
-EXPOSE 8080
+# Delete existing ROOT folder
+RUN rm -rf /usr/local/tomcat/webapps/ROOT
 
+# Copy to images tomcat path
+COPY ./target/TcsMail_v2-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 
