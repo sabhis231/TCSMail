@@ -5,7 +5,7 @@
     <groupId>com.tcs.ignite</groupId>
     <artifactId>TcsMail_v2</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>TcsMail_v2</name>
 
