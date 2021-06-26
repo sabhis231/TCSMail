@@ -22,7 +22,7 @@
 
 
 FROM openjdk:8
-ADD target/TcsMail_v2-1.0-SNAPSHOT.jar TcsMail_v2-1.0-SNAPSHOT.jar
+ADD /home/app/target/TcsMail_v2-1.0-SNAPSHOT.jar TcsMail_v2-1.0-SNAPSHOT.jar
 ENTRYPOINT ["java", "-jar","TcsMail_v2-1.0-SNAPSHOT.jar"]
 EXPOSE 8080
 
